@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Checklist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Login -->
+  <main id="login-view" class="login" hidden>
+    <form id="login-form" class="panel">
+      <div>
+        <div class="label">Daily Checklist</div>
+        <h1 style="margin-top:8px">Sign in</h1>
+      </div>
+      <label><span class="label">Username</span><input name="username" autocomplete="username" required></label>
+      <label><span class="label">Password</span><input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit" class="primary">Continue</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </main>
+
+  <!-- App -->
+  <div id="app-view" hidden>
+    <header class="topbar">
+      <div class="brand">Daily Checklist</div>
+      <span class="spacer"></span>
+      <span id="hello" class="who label"></span>
+      <button id="edit-template">Edit checklist</button>
+      <button id="logout" class="ghost">Log out</button>
+    </header>
+
+    <main class="layout">
+      <section class="panel calendar">
+        <div class="cal-head">
+          <h2 id="month-label"></h2>
+          <div class="cal-nav">
+            <button id="today-btn" class="ghost">Today</button>
+            <button id="prev-month" class="icon" aria-label="Previous month">‹</button>
+            <button id="next-month" class="icon" aria-label="Next month">›</button>
+          </div>
+        </div>
+        <div class="cal-grid weekdays label">
+          <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+        </div>
+        <div id="cal-grid" class="cal-grid"></div>
+        <div id="legend" class="legend"></div>
+      </section>
+
+      <section id="day" class="panel day"></section>
+    </main>
+  </div>
+
+  <!-- Checklist editor -->
+  <dialog id="template-dialog">
+    <form method="dialog" id="template-form">
+      <div class="dialog-head">
+        <h2>Daily checklist</h2>
+        <p>Shown every day. Edits apply from today onward; saved past days keep their original list.</p>
+      </div>
+      <div class="tpl-cols">
+        <div>
+          <div class="label">Do</div>
+          <ul id="tpl-do" class="tpl-list"></ul>
+          <div class="add-row"><input id="tpl-do-input" placeholder="Add item, e.g. Gym 1 hour"><button type="button" data-add="do">Add</button></div>
+        </div>
+        <div>
+          <div class="label">Avoid</div>
+          <ul id="tpl-dont" class="tpl-list"></ul>
+          <div class="add-row"><input id="tpl-dont-input" placeholder="Add item, e.g. Junk food"><button type="button" data-add="dont">Add</button></div>
+        </div>
+      </div>
+      <div class="dialog-actions">
+        <button value="cancel" class="ghost" formnovalidate>Cancel</button>
+        <button id="tpl-save" type="button" class="primary">Save checklist</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>
