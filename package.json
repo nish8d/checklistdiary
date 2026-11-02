@@ -1,0 +1,14 @@
+{
+  "name": "checklistdiary",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "db:init:local": "wrangler d1 execute checklistdiary --local --file=schema.sql",
+    "db:init:remote": "wrangler d1 execute checklistdiary --remote --file=schema.sql",
+    "deploy": "wrangler deploy",
+    "backup": "mkdir -p backups && wrangler d1 export checklistdiary --remote --output backups/backup-$(date +%Y-%m-%d_%H%M).sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.156.1"
+  }
+}

@@ -19,7 +19,7 @@ function h(tag, props = {}, ...kids) {
 async function api(method, url, body) {
   const r = await fetch(url, {
     method,
-    headers: body ? { 'Content-Type': 'application/json' } : {},
+    headers: { 'X-Today': ymd(new Date()), ...(body ? { 'Content-Type': 'application/json' } : {}) },
     body: body ? JSON.stringify(body) : undefined,
   });
   const data = await r.json().catch(() => ({}));
